@@ -11,9 +11,9 @@ export default {
             SlashCommandsListe.push(command.data);
         }
         // if (client.isDev) {
-        //     client.guilds.cache.get('943998134416195614')?.commands.set([]);
+        //     client.guilds.cache.get(process.env.SECRET_SERVER_ID)?.commands.set([]);
         //     client.guilds.cache
-        //         .get('943998134416195614')
+        //         .get(process.env.SECRET_SERVER_ID)
         //         ?.commands.set(SlashCommandsListe)
         //         .then(() => {
         //             console.log('Slash commands successful push on the server');
