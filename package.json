@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mayo56/Leonie.git"
+    "url": "git+https://github.com/MayoCompagnie/Leonie.git"
   },
   "keywords": [
     "discord-bot"
@@ -19,9 +19,9 @@
   "author": "Mayo",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mayo56/Leonie/issues"
+    "url": "https://github.com/mayo56/MayoCompagnie/Leonie/issues"
   },
-  "homepage": "https://github.com/mayo56/Leonie#readme",
+  "homepage": "https://github.com/mayo56/MayoCompagnie/Leonie#readme",
   "dependencies": {
     "axios": "^1.2.1",
     "discord.js": "^14.7.1",
