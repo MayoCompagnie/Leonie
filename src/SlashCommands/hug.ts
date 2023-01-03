@@ -43,6 +43,7 @@ export default {
                         ? `**${user.username}** s'est auto câliné ! Peut-être te sens-tu seul.e ?`
                         : `**${interaction.user.username}** a fait un câlin à **${user.username}** !`
                 )
+                .setColor('Green')
                 .setImage(gif)
         };
 
@@ -53,6 +54,7 @@ export default {
                     ? `**${user.username}** hug himself ! Maybe you feel alone ?`
                     : `**${interaction.user.username}** give hug to **${user.username}** !`
             )
+            .setColor('Green')
             .setImage(gif);
 
         await interaction.reply({

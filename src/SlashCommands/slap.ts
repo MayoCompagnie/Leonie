@@ -43,6 +43,7 @@ export default {
                         ? `**${user.username}** s'est auto giflé ! Bravo !`
                         : `**${interaction.user.username}** a giflé **${user.username}** !`
                 )
+                .setColor('Green')
                 .setImage(gif)
         };
 
@@ -53,6 +54,7 @@ export default {
                     ? `**${user.username}** slapped himself ! Nice !`
                     : `**${interaction.user.username}** have slap **${user.username}** !`
             )
+            .setColor('Green')
             .setImage(gif);
 
         await interaction.reply({

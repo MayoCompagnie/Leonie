@@ -15,7 +15,7 @@ export default {
         .setDMPermission(false),
     run: async (client: Client, interaction: ChatInputCommandInteraction) => {
         const pingEmbed = new EmbedBuilder()
-            .setTitle('Pong !')
+            .setTitle('Pong ! 🏓')
             .setDescription(
                 `J'ai actuellement **${client.ws.ping}** de ping UwU`
             );

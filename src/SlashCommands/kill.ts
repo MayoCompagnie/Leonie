@@ -42,6 +42,7 @@ export default {
                         ? `**${user.username}** s'est auto tué ! Pas bête ça !`
                         : `**${interaction.user.username}** a tué **${user.username}** !`
                 )
+                .setColor('Green')
                 .setImage(gif)
         };
 
@@ -52,6 +53,7 @@ export default {
                     ? `**${user.username}** kill himself !`
                     : `**${interaction.user.username}** kill **${user.username}** !`
             )
+            .setColor('Green')
             .setImage(gif);
 
         await interaction.reply({

@@ -27,6 +27,7 @@ export default {
                         forceStatic: false
                     })
                 )
+                .setColor('Blue')
         };
         const serverIconEmbed = new EmbedBuilder()
             .setTitle('Server icon')
@@ -39,7 +40,8 @@ export default {
                     extension: 'png',
                     forceStatic: false
                 })
-            );
+            )
+            .setColor('Blue');
         await interaction.reply({
             embeds: [locale[interaction.locale as 'fr'] ?? serverIconEmbed]
         });

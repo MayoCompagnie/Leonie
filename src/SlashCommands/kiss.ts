@@ -44,6 +44,7 @@ export default {
                         ? `**${user.username}** s'est auto embrassé !`
                         : `**${interaction.user.username}** a fait un bisou à **${user.username}** !`
                 )
+                .setColor('Green')
                 .setImage(gif)
         };
 
@@ -54,6 +55,7 @@ export default {
                     ? `**${user.username}** kiss himself !`
                     : `**${interaction.user.username}** kiss **${user.username}** !`
             )
+            .setColor('Green')
             .setImage(gif);
 
         await interaction.reply({

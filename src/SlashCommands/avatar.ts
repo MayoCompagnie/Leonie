@@ -67,13 +67,14 @@ export default {
                 );
             const locale = {
                 fr: new EmbedBuilder()
-                    .setTitle('Photo de profil (du ce server)')
+                    .setTitle('Photo de profil (sur ce server)')
                     .setDescription(
                         isUser
-                            ? `**${user.username}**, voice ta photo de profil sur ce server !`
+                            ? `**${user.username}**, voici ta photo de profil sur ce server !`
                             : `Voici la photo de profil de **${user.username}** sur ce serveur !`
                     )
                     .setImage(avatar!)
+                    .setColor('Blue')
             };
             const avatarEmbed = new EmbedBuilder()
                 .setTitle('User Avatar (on this server)')
@@ -82,7 +83,8 @@ export default {
                         ? `**${user.username}**, here is your user's avatar on this server !`
                         : `Here is the user's avatar of **${user.username}** on this server !`
                 )
-                .setImage(avatar!);
+                .setImage(avatar!)
+                .setColor('Blue');
             await interaction.reply({
                 embeds: [locale[interaction.locale as 'fr'] ?? avatarEmbed]
             });
@@ -96,22 +98,24 @@ export default {
             );
             const locale = {
                 fr: new EmbedBuilder()
-                    .setTitle('Photo de profil (du ce server)')
+                    .setTitle('Photo de profil')
                     .setDescription(
                         isUser
-                            ? `**${user.username}**, voice ta photo de profil sur ce server !`
-                            : `Voici la photo de profil de **${user.username}** sur ce serveur !`
+                            ? `**${user.username}**, voici ta photo de profil !`
+                            : `Voici la photo de profil de **${user.username}** !`
                     )
                     .setImage(avatar!)
+                    .setColor('Blue')
             };
             const avatarEmbed = new EmbedBuilder()
-                .setTitle('User Avatar (on this server)')
+                .setTitle('User Avatar')
                 .setDescription(
                     isUser
-                        ? `**${user.username}**, here is your user's avatar on this server !`
-                        : `Here is the user's avatar of **${user.username}** on this server !`
+                        ? `**${user.username}**, here is your user's avatar !`
+                        : `Here is the user's avatar of **${user.username}** !`
                 )
-                .setImage(avatar!);
+                .setImage(avatar!)
+                .setColor('Blue');
             await interaction.reply({
                 embeds: [locale[interaction.locale as 'fr'] ?? avatarEmbed]
             });

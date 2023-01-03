@@ -45,33 +45,55 @@ export default {
                     },
                     {
                         name: 'Membres',
-                        value: `${guild.memberCount}`,
+                        value: `${guild.memberCount.toString()}`,
                         inline: true
                     },
                     {
                         name: 'Salons',
-                        value: `${guild.channels.cache.size}`,
+                        value: `${guild.channels.cache.size.toString()}`,
                         inline: true
                     },
                     {
-                        name: `Roles [${guild.roles.cache.size}]`,
+                        name: `Roles [${guild.roles.cache.size.toString()}]`,
                         value: `${guild.roles.cache
                             .map(e => e.toString())
-                            .join(' ')}`,
+                            .slice(0, 20)
+                            .join(' ')}
+                            ${
+                                guild.roles.cache.size - 20 > 0
+                                    ? `*Et ${
+                                          guild.roles.cache.size - 20
+                                      } autres...*`
+                                    : ''
+                            }`,
                         inline: false
                     },
                     {
-                        name: `Émojis [${guild.emojis.cache.size}]`,
+                        name: `Émojis [${guild.emojis.cache.size.toString()}]`,
                         value: `${guild.emojis.cache
                             .map(e => e.toString())
-                            .join(' ')}`,
+                            .slice(0, 20)
+                            .join(' ')}
+                            ${
+                                guild.emojis.cache.size - 20 > 0
+                                    ? `*Et ${
+                                          guild.emojis.cache.size - 20
+                                      } autres...*`
+                                    : ''
+                            }`,
                         inline: false
                     }
                 ])
                 .setImage(
                     guild.banner
                         ? guild.bannerURL({
-                              size: 4096,
+                              size: 256,
+                              forceStatic: false,
+                              extension: 'png'
+                          })
+                        : guild.splash
+                        ? guild.splashURL({
+                              size: 256,
                               forceStatic: false,
                               extension: 'png'
                           })
@@ -84,6 +106,7 @@ export default {
                         forceStatic: false
                     })
                 )
+                .setColor('Blue')
                 .setFooter({
                     text: `${client.user?.username}`,
                     iconURL: `${client.user?.displayAvatarURL()}`
@@ -96,14 +119,14 @@ export default {
             .addFields([
                 {
                     name: 'Server Owner',
-                    value: `<@${guild.ownerId}> (${await client.users
+                    value: `<@${guild.ownerId.toString()}> (${await client.users
                         .fetch(guild.ownerId)
                         .then(u => u.tag)})`,
                     inline: true
                 },
                 {
                     name: 'ID',
-                    value: `${guild.id}`,
+                    value: `${guild.id.toString()}`,
                     inline: true
                 },
                 {
@@ -115,33 +138,55 @@ export default {
                 },
                 {
                     name: 'Members',
-                    value: `${guild.memberCount}`,
+                    value: `${guild.memberCount.toString()}`,
                     inline: true
                 },
                 {
                     name: 'Channels',
-                    value: `${guild.channels.cache.size}`,
+                    value: `${guild.channels.cache.size.toString() || '0'}`,
                     inline: true
                 },
                 {
-                    name: `Roles [${guild.roles.cache.size}]`,
+                    name: `Roles [${guild.roles.cache.size.toString() || '0'}]`,
                     value: `${guild.roles.cache
                         .map(e => e.toString())
-                        .join(' ')}`,
+                        .slice(0, 20)
+                        .join(' ')}
+                        ${
+                            guild.roles.cache.size - 20 > 0
+                                ? `*And ${guild.roles.cache.size - 20} more...*`
+                                : ''
+                        }`,
                     inline: false
                 },
                 {
-                    name: `Emojis [${guild.emojis.cache.size}]`,
+                    name: `Emojis [${
+                        guild.emojis.cache.size.toString() || '0'
+                    }]`,
                     value: `${guild.emojis.cache
                         .map(e => e.toString())
-                        .join(' ')}`,
+                        .slice(0, 20)
+                        .join(' ')}
+                        ${
+                            guild.emojis.cache.size - 20 > 0
+                                ? `*And ${
+                                      guild.emojis.cache.size - 20
+                                  } more...*`
+                                : ''
+                        }`,
                     inline: false
                 }
             ])
             .setImage(
                 guild.banner
                     ? guild.bannerURL({
-                          size: 4096,
+                          size: 256,
+                          forceStatic: false,
+                          extension: 'png'
+                      })
+                    : guild.splash
+                    ? guild.splashURL({
+                          size: 256,
                           forceStatic: false,
                           extension: 'png'
                       })
@@ -154,6 +199,7 @@ export default {
                     forceStatic: false
                 })
             )
+            .setColor('Blue')
             .setFooter({
                 text: `${client.user?.username}`,
                 iconURL: `${client.user?.displayAvatarURL()}`

@@ -43,10 +43,11 @@ export default {
                     .setTitle('Bannière')
                     .setDescription(
                         isUser
-                            ? `**${user.username}**, voici votre bannière !`
+                            ? `**${user.username}**, voici ta bannière !`
                             : `Voici la bannière de **${user.username}** !`
                     )
                     .setImage(banner!)
+                    .setColor('Blue')
             };
             const bannerEmbed = new EmbedBuilder()
                 .setTitle('Banner')
@@ -55,7 +56,8 @@ export default {
                         ? `**${user.username}**, here is your banner !`
                         : `Here **${user.username}**'s banner !`
                 )
-                .setImage(banner!);
+                .setImage(banner!)
+                .setColor('Blue');
             await interaction.reply({
                 embeds: [locale[interaction.locale as 'fr'] ?? bannerEmbed]
             });
@@ -66,10 +68,11 @@ export default {
                     .setTitle('Bannière')
                     .setDescription(
                         isUser
-                            ? `**${user.username}**, voici votre bannière !`
+                            ? `**${user.username}**, voici ta bannière !`
                             : `Voici la bannière de **${user.username}** !`
                     )
                     .setImage(accentColor!)
+                    .setColor('Blue')
             };
             const bannerEmbed = new EmbedBuilder()
                 .setTitle('Banner')
@@ -78,7 +81,8 @@ export default {
                         ? `**${user.username}**, here is your banner !`
                         : `Here **${user.username}**'s banner !`
                 )
-                .setImage(accentColor!);
+                .setImage(accentColor!)
+                .setColor('Blue');
             await interaction.reply({
                 embeds: [locale[interaction.locale as 'fr'] ?? bannerEmbed]
             });

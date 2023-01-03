@@ -12,5 +12,5 @@ new leonieClient(
         'MessageContent',
         'GuildEmojisAndStickers'
     ],
-    true
+    false
 );
