@@ -11,7 +11,8 @@ export default {
         .setDescription('Get server icon !')
         .setDescriptionLocalizations({
             fr: "Obtient l'icon de server !"
-        }),
+        })
+        .setDMPermission(false),
     run: async (client: Client, interaction: ChatInputCommandInteraction) => {
         const locale = {
             fr: new EmbedBuilder()

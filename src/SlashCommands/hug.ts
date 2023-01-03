@@ -27,7 +27,8 @@ export default {
                     fr: 'Dites quel membre câliné !'
                 })
                 .setRequired(true)
-        ),
+        )
+        .setDMPermission(false),
     run: async (client: Client, interaction: ChatInputCommandInteraction) => {
         const user = interaction.options.getUser('user') || interaction.user;
         const isUser = interaction.user.id === user.id;

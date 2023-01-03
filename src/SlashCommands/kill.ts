@@ -25,7 +25,8 @@ export default {
                     fr: 'Choisis le membre que tu souhaites tuer !'
                 })
                 .setRequired(false)
-        ),
+        )
+        .setDMPermission(false),
     run: async (client: Client, interaction: ChatInputCommandInteraction) => {
         const user = interaction.options.getUser('member') || interaction.user;
         const isUser = interaction.user.id === user.id;

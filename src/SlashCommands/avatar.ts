@@ -48,7 +48,8 @@ export default {
                     }
                 )
                 .setRequired(false)
-        ),
+        )
+        .setDMPermission(false),
     run: async (client: Client, interaction: ChatInputCommandInteraction) => {
         const user = interaction.options.getUser('member') || interaction.user;
         const inGuild = interaction.options.getString('guild') || 'no';

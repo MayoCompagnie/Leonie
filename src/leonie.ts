@@ -9,7 +9,8 @@ new leonieClient(
         'GuildMessages',
         'GuildMembers',
         'DirectMessages',
-        'MessageContent'
+        'MessageContent',
+        'GuildEmojisAndStickers'
     ],
     true
 );

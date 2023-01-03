@@ -26,7 +26,8 @@ export default {
                     fr: "De quel membre s'agit-il ?"
                 })
                 .setRequired(false)
-        ),
+        )
+        .setDMPermission(false),
     run: async (client: Client, interaction: ChatInputCommandInteraction) => {
         let user = interaction.options.getUser('member') || interaction.user;
         user = await client.users.fetch(user.id, { force: true });

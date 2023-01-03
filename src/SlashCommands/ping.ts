@@ -11,7 +11,8 @@ export default {
         .setDescription('Check the ping of th bot')
         .setDescriptionLocalizations({
             fr: 'Regarder quel est le ping du bot'
-        }),
+        })
+        .setDMPermission(false),
     run: async (client: Client, interaction: ChatInputCommandInteraction) => {
         const pingEmbed = new EmbedBuilder()
             .setTitle('Pong !')
