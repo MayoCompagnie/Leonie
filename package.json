@@ -1,6 +1,6 @@
 {
   "name": "leonie",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Bot discord Léonie dans sa deuxième version",
   "main": "src/leonie.ts",
   "scripts": {
