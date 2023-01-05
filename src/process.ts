@@ -8,11 +8,13 @@ import {
 } from 'discord.js';
 import fs from 'node:fs';
 import {
-    messageCommandsHandlerType,
     readyHandlerType,
-    runMessageCommandsHandlerType,
     slashCommandsHandlerType,
-    runSlashCommandsHandlerType
+    runSlashCommandsHandlerType,
+    runModalsHandlerType,
+    modalsHandlerType,
+    runButtonHandlerType,
+    buttonHandlerType
 } from './types/typesHandler';
 
 class leoniClient {
@@ -24,19 +26,25 @@ class leoniClient {
         partials: [Partials.Channel, Partials.Message]
     });
 
-    // Commands (MessageCreate) Informations
-    private listeCommands = fs
-        .readdirSync(`${__dirname}/Commands`)
-        .filter(f => f.endsWith('.ts'));
-    private commandsList: Collection<string[], runMessageCommandsHandlerType> =
-        new Collection();
-    private helpCommandList: { name: string[]; description: string }[] = []; // for help command
-
     // Commands (Slash) Informations
     private listeSlashCommands = fs
         .readdirSync(`${__dirname}/SlashCommands`)
         .filter(f => f.endsWith('.ts'));
     private slashCommandsList: Collection<string, runSlashCommandsHandlerType> =
+        new Collection();
+
+    // Modals (slash commands)
+    private listeModals = fs
+        .readdirSync(`${__dirname}/modals`)
+        .filter(f => f.endsWith('.ts'));
+    private modalsList: Collection<string, runModalsHandlerType> =
+        new Collection();
+
+    // Buttons (slash commands)
+    private listeButton = fs
+        .readdirSync(`${__dirname}/button`)
+        .filter(f => f.endsWith('.ts'));
+    private buttonList: Collection<string, runButtonHandlerType> =
         new Collection();
 
     /**
@@ -50,7 +58,6 @@ class leoniClient {
     ) {
         this.client.isDev = this.isDev;
         this.getCommandsInformations();
-        this.loadCommands();
         this.loadEvent();
         this.loadSlashCommands();
         this.login();
@@ -77,27 +84,6 @@ class leoniClient {
     }
 
     private getCommandsInformations(): void {
-        console.log('<< >> ---- Command messageCreate ---- << >>');
-        for (let command of this.listeCommands) {
-            try {
-                const thisCommand = require(`${__dirname}/Commands/${command}`)
-                    .default as messageCommandsHandlerType;
-                this.commandsList.set(
-                    [thisCommand.name, ...thisCommand.help],
-                    thisCommand.run
-                );
-                this.helpCommandList.push({
-                    name: [thisCommand.name, ...thisCommand.help],
-                    description: thisCommand.description
-                });
-                console.log(
-                    `Command "${thisCommand.name}" loaded with success !`
-                );
-            } catch (err) {
-                console.error(`ERROR fail to load command\n`, err);
-            }
-        }
-        console.log('<< >> ------------------------------- << >>');
         console.log('<< >> -------- Command slash -------- << >>');
         for (let command of this.listeSlashCommands) {
             try {
@@ -116,31 +102,54 @@ class leoniClient {
             }
         }
         console.log('<< >> ------------------------------- << >>');
-    }
-
-    private async loadCommands(): Promise<void> {
-        this.client.on(Events.MessageCreate, message => {
-            if (message.author.bot || !message.content.startsWith('3>')) return;
-
-            // Verify if the command exist
-            const args = message.content.trim().slice(2).split(/ +/g);
-            const command = this.commandsList.findKey((r, k) =>
-                k.includes(args[0])
-            );
-            if (!command) return;
-
-            // Execute command
-            this.commandsList.get(command)?.(this.client, message, args);
-        });
+        console.log('<< >> ------------ Modals ----------- << >>');
+        for (let modal of this.listeModals) {
+            try {
+                const thisCommand = require(`${__dirname}/modals/${modal}`)
+                    .default as modalsHandlerType;
+                this.modalsList.set(thisCommand.name, thisCommand.run);
+                console.log(
+                    `Modal "${thisCommand.name}" loaded with success !`
+                );
+            } catch (err) {
+                console.error(`ERROR fail to load modal\n`, err);
+            }
+        }
+        console.log('<< >> ------------------------------- << >>');
+        console.log('<< >> ----------- Buttons ----------- << >>');
+        for (let button of this.listeButton) {
+            try {
+                const thisCommand = require(`${__dirname}/button/${button}`)
+                    .default as buttonHandlerType;
+                this.buttonList.set(thisCommand.name, thisCommand.run);
+                console.log(
+                    `Button "${thisCommand.name}" loaded with success !`
+                );
+            } catch (err) {
+                console.error(`ERROR fail to load button\n`, err);
+            }
+        }
+        console.log('<< >> ------------------------------- << >>');
     }
 
     private async loadSlashCommands(): Promise<void> {
         this.client.on(Events.InteractionCreate, interaction => {
-            if (!interaction.isChatInputCommand()) return;
-            this.slashCommandsList.get(interaction.commandName)?.(
-                this.client,
-                interaction
-            );
+            if (interaction.isChatInputCommand()) {
+                this.slashCommandsList.get(interaction.commandName)?.(
+                    this.client,
+                    interaction
+                );
+            } else if (interaction.isModalSubmit()) {
+                this.modalsList.get(interaction.customId)?.(
+                    this.client,
+                    interaction
+                );
+            } else if (interaction.isButton()) {
+                this.buttonList.get(interaction.customId)?.(
+                    this.client,
+                    interaction
+                );
+            }
         });
     }
 

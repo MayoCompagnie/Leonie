@@ -27,24 +27,24 @@ export default {
         )
         .addStringOption(option =>
             option
-                .setName('guild')
+                .setName('type')
                 .setNameLocalizations({
-                    fr: 'server'
+                    fr: 'type'
                 })
-                .setDescription('You want the avatar in the guild ?')
+                .setDescription('Public avatar or server avatar ?')
                 .setDescriptionLocalizations({
-                    fr: 'Vous voulez la photo de profil dans le serveur ?'
+                    fr: 'La photo de profile publique ou sur le server ?'
                 })
                 .addChoices(
                     {
-                        name: 'yes',
-                        value: 'yes',
-                        name_localizations: { fr: 'oui' }
+                        name: 'server',
+                        value: 'server',
+                        name_localizations: { fr: 'serveur' }
                     },
                     {
-                        name: 'no',
-                        value: 'no',
-                        name_localizations: { fr: 'non' }
+                        name: 'public',
+                        value: 'public',
+                        name_localizations: { fr: 'publique' }
                     }
                 )
                 .setRequired(false)
@@ -52,10 +52,10 @@ export default {
         .setDMPermission(false),
     run: async (client: Client, interaction: ChatInputCommandInteraction) => {
         const user = interaction.options.getUser('member') || interaction.user;
-        const inGuild = interaction.options.getString('guild') || 'no';
+        const inGuild = interaction.options.getString('guild') || 'public';
         const isUser = interaction.user.id === user.id;
 
-        if (inGuild === 'yes') {
+        if (inGuild === 'server') {
             const avatar = await interaction.guild?.members
                 .fetch(user.id)
                 .then(m =>
