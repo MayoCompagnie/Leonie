@@ -31,8 +31,8 @@ export default {
         const user = interaction.options.getUser('member') || interaction.user;
         const isUser = interaction.user.id === user.id;
 
-        const gif = (await getGIF('kill+anime'))[Math.round(Math.random() * 8)]
-            .images.original.url;
+        const gif = (await getGIF('kill-anime'))[Math.round(Math.random() * 8)]
+            .media_formats.gif.url;
 
         const locale = {
             fr: new EmbedBuilder()

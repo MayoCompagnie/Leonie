@@ -11,7 +11,7 @@ export default {
         .setNameLocalizations({
             fr: 'bannière'
         })
-        .setDescription('Get a mamber banner !')
+        .setDescription('Get a member banner !')
         .setDescriptionLocalizations({
             fr: "Obtient la bannière d'un utilisateur !"
         })

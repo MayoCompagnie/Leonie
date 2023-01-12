@@ -52,7 +52,7 @@ export default {
         .setDMPermission(false),
     run: async (client: Client, interaction: ChatInputCommandInteraction) => {
         const user = interaction.options.getUser('member') || interaction.user;
-        const inGuild = interaction.options.getString('guild') || 'public';
+        const inGuild = interaction.options.getString('type') || 'public';
         const isUser = interaction.user.id === user.id;
 
         if (inGuild === 'server') {

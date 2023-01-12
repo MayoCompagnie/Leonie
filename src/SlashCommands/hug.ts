@@ -32,8 +32,8 @@ export default {
     run: async (client: Client, interaction: ChatInputCommandInteraction) => {
         const user = interaction.options.getUser('user') || interaction.user;
         const isUser = interaction.user.id === user.id;
-        const gif = (await getGIF('hug+anime'))[Math.round(Math.random() * 8)]
-            .images.original.url;
+        const gif = (await getGIF('hug-anime'))[Math.round(Math.random() * 8)]
+            .media_formats.gif.url;
 
         const locale = {
             fr: new EmbedBuilder()
