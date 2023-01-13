@@ -58,7 +58,7 @@ export default {
             .setImage(gif);
 
         await interaction.reply({
-            embeds: [locale[(interaction.locale as 'fr') ?? slapEmbed]]
+            embeds: [locale[interaction.locale as 'fr'] ?? slapEmbed]
         });
     }
 };
