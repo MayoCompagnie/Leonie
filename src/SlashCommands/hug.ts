@@ -48,7 +48,7 @@ export default {
         };
 
         const slapEmbed = new EmbedBuilder()
-            .setTitle('Slap paty !')
+            .setTitle('Hug paty !')
             .setDescription(
                 isUser
                     ? `**${user.username}** hug himself ! Maybe you feel alone ?`
