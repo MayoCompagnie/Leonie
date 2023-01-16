@@ -21,7 +21,7 @@ export default {
         const locale = {
             fr: new EmbedBuilder()
                 .setTitle('Informations sur le bot')
-                .setDescription(`Hello !\nJe suis un jolie bot Discord !`)
+                .setDescription(`Hello !\nJe suis un joli bot Discord !`)
                 .addFields([
                     {
                         name: 'Liens',
