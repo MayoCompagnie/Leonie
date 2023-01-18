@@ -69,9 +69,10 @@ export default {
                 fr: new EmbedBuilder()
                     .setTitle('Photo de profil (sur ce server)')
                     .setDescription(
-                        isUser
-                            ? `**${user.username}**, voici ta photo de profil sur ce server !`
-                            : `Voici la photo de profil de **${user.username}** sur ce serveur !`
+                        (isUser
+                            ? `**${user.username}**, voici ta photo de profil sur ce server !\n`
+                            : `Voici la photo de profil de **${user.username}** sur ce serveur !\n`) +
+                            `[Télécharger l'avatar](${avatar})`
                     )
                     .setImage(avatar!)
                     .setColor('Blue')
@@ -79,9 +80,10 @@ export default {
             const avatarEmbed = new EmbedBuilder()
                 .setTitle('User Avatar (on this server)')
                 .setDescription(
-                    isUser
-                        ? `**${user.username}**, here is your user's avatar on this server !`
-                        : `Here is the user's avatar of **${user.username}** on this server !`
+                    (isUser
+                        ? `**${user.username}**, here is your user's avatar on this server !\n`
+                        : `Here is the user's avatar of **${user.username}** on this server !\n`) +
+                        `[Download avatar](${avatar})`
                 )
                 .setImage(avatar!)
                 .setColor('Blue');
@@ -100,9 +102,10 @@ export default {
                 fr: new EmbedBuilder()
                     .setTitle('Photo de profil')
                     .setDescription(
-                        isUser
-                            ? `**${user.username}**, voici ta photo de profil !`
-                            : `Voici la photo de profil de **${user.username}** !`
+                        (isUser
+                            ? `**${user.username}**, voici ta photo de profil !\n`
+                            : `Voici la photo de profil de **${user.username}** !\n`) +
+                            `[Télécharger l'avatar](${avatar})`
                     )
                     .setImage(avatar!)
                     .setColor('Blue')
@@ -110,9 +113,10 @@ export default {
             const avatarEmbed = new EmbedBuilder()
                 .setTitle('User Avatar')
                 .setDescription(
-                    isUser
-                        ? `**${user.username}**, here is your user's avatar !`
-                        : `Here is the user's avatar of **${user.username}** !`
+                    (isUser
+                        ? `**${user.username}**, here is your user's avatar !\n`
+                        : `Here is the user's avatar of **${user.username}** !\n`) +
+                        `[Download avatar](${avatar})`
                 )
                 .setImage(avatar!)
                 .setColor('Blue');

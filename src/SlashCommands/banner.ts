@@ -42,9 +42,10 @@ export default {
                 fr: new EmbedBuilder()
                     .setTitle('Bannière')
                     .setDescription(
-                        isUser
-                            ? `**${user.username}**, voici ta bannière !`
-                            : `Voici la bannière de **${user.username}** !`
+                        (isUser
+                            ? `**${user.username}**, voici ta bannière !\n`
+                            : `Voici la bannière de **${user.username}** !\n`) +
+                            `[Télécharger la bannière](${banner})`
                     )
                     .setImage(banner!)
                     .setColor('Blue')
@@ -52,9 +53,10 @@ export default {
             const bannerEmbed = new EmbedBuilder()
                 .setTitle('Banner')
                 .setDescription(
-                    isUser
-                        ? `**${user.username}**, here is your banner !`
-                        : `Here **${user.username}**'s banner !`
+                    (isUser
+                        ? `**${user.username}**, here is your banner !\n`
+                        : `Here **${user.username}**'s banner !\n`) +
+                        `[Download banner](${banner})`
                 )
                 .setImage(banner!)
                 .setColor('Blue');
@@ -67,9 +69,10 @@ export default {
                 fr: new EmbedBuilder()
                     .setTitle('Bannière')
                     .setDescription(
-                        isUser
-                            ? `**${user.username}**, voici ta bannière !`
-                            : `Voici la bannière de **${user.username}** !`
+                        (isUser
+                            ? `**${user.username}**, voici ta bannière !\n`
+                            : `Voici la bannière de **${user.username}** !\n`) +
+                            `[Télécharger la couleur](${accentColor})`
                     )
                     .setImage(accentColor!)
                     .setColor('Blue')
@@ -77,9 +80,10 @@ export default {
             const bannerEmbed = new EmbedBuilder()
                 .setTitle('Banner')
                 .setDescription(
-                    isUser
-                        ? `**${user.username}**, here is your banner !`
-                        : `Here **${user.username}**'s banner !`
+                    (isUser
+                        ? `**${user.username}**, here is your banner !\n`
+                        : `Here **${user.username}**'s banner !\n`) +
+                        `[Download accent color](${accentColor})`
                 )
                 .setImage(accentColor!)
                 .setColor('Blue');
